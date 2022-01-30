@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>CookieTrackingDemo</display-name>
+  <display-name>URLRewriteDemo</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -15,12 +15,12 @@
     <servlet-class>LoginServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>Dashboard</servlet-name>
-    <servlet-class>Dashboard</servlet-class>
+    <servlet-name>Dashboard2</servlet-name>
+    <servlet-class>Dashboard2</servlet-class>
   </servlet>
  
   <servlet-mapping>
-    <servlet-name>Dashboard</servlet-name>
+    <servlet-name>Dashboard2</servlet-name>
     <url-pattern>/dashboard</url-pattern>
   </servlet-mapping>
    <servlet-mapping>
@@ -28,5 +28,3 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
 </web-app>
-
-

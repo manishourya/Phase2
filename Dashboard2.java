@@ -6,16 +6,16 @@ import javax.servlet.http.*;
 
 
 /**
-* Servlet implementation class LoginServlet
+* Servlet implementation class Dashboard
 */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/Dashboard")
+public class Dashboard2 extends HttpServlet {
         private static final long serialVersionUID = 1L;
        
     /**
 * @see HttpServlet#HttpServlet()
 */
-    public LoginServlet() {
+    public Dashboard2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -25,10 +25,18 @@ public class LoginServlet extends HttpServlet {
          */
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                 // TODO Auto-generated method stub
-                
-                 String userId = request.getParameter("userid");
-             response.sendRedirect("dashboard?userid=" + userId);  
-                
+        
+            PrintWriter out = response.getWriter();
+            out.println("<html><body>");
+            
+            String userId = request.getParameter("userid");
+            if (userId == null ) {
+                out.println("No UserId was found in the URL.<br>");
+            } else {
+                out.println("UserId obtained from URL Rewriting:" + userId + "<br>");
+            }
+            out.println("</body></html>");
+
         }
 
         /**
@@ -40,3 +48,7 @@ public class LoginServlet extends HttpServlet {
         }
 
 }
+
+
+
+

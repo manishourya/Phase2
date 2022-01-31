@@ -1,59 +1,49 @@
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.annotation.*;
-import javax.servlet.http.*;
+package advanced.java.program;
+import java.io.IOException;
+import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-
-* Servlet implementation class Dashboard
-*/
-@WebServlet("/Dashboard")
 public class Dashboard extends HttpServlet {
-        private static final long serialVersionUID = 1L;
-       
-    /**
-* @see HttpServlet#HttpServlet()
-*/
-    public Dashboard() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-        /**
-         * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-         */
-        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-                // TODO Auto-generated method stub
-        
-                Cookie cookie = null;
-            Cookie[] cookies = null;
-            boolean found = false;
-            PrintWriter out = response.getWriter();
-            out.println("<html><body>");
-            
-            cookies = request.getCookies();
-            if (cookies != null) {
-                    for (int i = 0; i < cookies.length; i++) {
-                    cookie = cookies[i];
-                    if (cookie.getName().contentEquals("userid") && cookie.getValue() != null) {
-                        out.println("UserId read from cookie:" + cookie.getValue() + "<br>");
-                        found = true;
-                    }
-                 }
-            }
-            if (!found) {
-                out.println("No UserId was found in cookie.<br>");
-            }
-            out.println("</body></html>");
-
-        }
-
-        /**
-         * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-         */
-        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-                // TODO Auto-generated method stub
-                doGet(request, response);
-        }
-
+	
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+	String username=request.getParameter("username");
+	String password=request.getParameter("password");
+	RequestDispatcher rd=null;
+	if(username!=null && username.equalsIgnoreCase("Manikanta") && password!=null && password.equalsIgnoreCase("Mani")){
+		rd=request.getRequestDispatcher("LoginServlet");
+		rd.forward(request, response);}
+	else{
+			rd=request.getRequestDispatcher("login.html");
+			PrintWriter out=response.getWriter();
+			rd.include(request, response);
+			out.print("<center><span style='color:red'>Invalid Credentials!!</span></center>");
+		}
+	String url=request.getRequestURI().toString();
+	PrintWriter pw=response.getWriter();
+	pw.print("<center><h4><a href=Logout?>logout</a></h4></center>");
+	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+/*	RequestDispatcher rd=null;
+	if(username!=null && username.equalsIgnoreCase("Manikanta") && password!=null && password.equalsIgnoreCase("Mani")){
+		rd=request.getRequestDispatcher("LoginServlet");
+		rd.forward(request, response);}
+	else{
+			rd=request.getRequestDispatcher("login.html");
+			PrintWriter out=response.getWriter();
+			rd.include(request, response);
+			out.print("<center><span style='color:red'>Invalid Credentials!!</span></center>");
+		}*/
+	}
 }
